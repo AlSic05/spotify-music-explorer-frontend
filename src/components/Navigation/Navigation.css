@@ -1,0 +1,40 @@
+.navigation {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.navigation__link {
+  padding: 10px 24px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.navigation__link--outline {
+  background-color: transparent;
+  color: #1db954;
+  border: 1px solid #1db954;
+}
+
+.navigation__link--solid {
+  background-color: #1db954;
+  color: #000;
+  border: 1px solid #1db954;
+}
+
+.navigation__link--outline:hover {
+  background-color: rgba(29, 185, 84, 0.1);
+  transform: translateY(-1px);
+}
+
+.navigation__link--solid:hover {
+  background-color: #1ed760;
+  transform: translateY(-1px);
+}

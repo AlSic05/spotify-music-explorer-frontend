@@ -1,14 +1,28 @@
 .header {
+  width: 100%;
+  background-color: #000;
+  border-bottom: 2px solid #282828;
+  box-sizing: border-box;
+}
+
+.header__container {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 20px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 50px;
-  background-color: #000;
 }
 
-.header__link {
-  color: #1db954;
-  margin-left: 20px;
-  text-decoration: none;
-  font-weight: bold;
+.header__title {
+  margin: 0;
+  font-size: 24px;
+  color: #fff;
+  font-weight: 700;
+}
+
+@media screen and (max-width: 720px) {
+  .header__container {
+    padding: 20px;
+  }
 }

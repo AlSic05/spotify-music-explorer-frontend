@@ -1,19 +1,13 @@
 import React from "react";
-import "./Header.css";
-import { Link } from "react-router-dom";
+import Navigation from "../Navigation/Navigation";
 
 function Header() {
   return (
     <header className="header">
-      <h1 className="header__title">Spotify App</h1>
-      <nav className="header__nav">
-        <Link to="/" className="header__link">
-          Inicio
-        </Link>
-        <Link to="/search-results" className="header__link">
-          Resultados
-        </Link>
-      </nav>
+      <div className="header__container">
+        <h1 className="header__title">Spotify App</h1>
+        <Navigation />
+      </div>
     </header>
   );
 }
