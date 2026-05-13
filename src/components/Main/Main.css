@@ -1,0 +1,14 @@
+.main {
+  min-height: calc(100vh - 160px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+}
+
+.main__hero h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
