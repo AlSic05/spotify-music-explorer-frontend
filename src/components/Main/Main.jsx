@@ -1,23 +1,21 @@
 import React from "react";
-import "./Main.css";
-//import SearchForm from "../SearchForm/SearchForm";//
+import About from "../About/About";
 
-function Main() {
+function Main({ onOpenModal }) {
   return (
     <main className="main">
       <section className="main__hero">
         <h2>Busca a tus artistas favoritos</h2>
         <p>Encuentra álbumes y canciones usando la API de Spotify.</p>
-        <div
-          style={{
-            marginTop: "20px",
-            border: "1px dashed #555",
-            padding: "20px",
-          }}
+        <button
+          type="button"
+          onClick={onOpenModal}
+          className="main__search-button"
         >
-          [Aquí irá el Formulario de Búsqueda]
-        </div>
+          Comenzar búsqueda
+        </button>
       </section>
+      <About />
     </main>
   );
 }

@@ -2,24 +2,40 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import SearchForm from "../SearchForm/SearchForm";
 import Footer from "../Footer/Footer";
 
 function App() {
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="app">
       <Header />
-      <div className="app__content">
-        <main className="app__section">
-          <Routes>
-            <Route path="/" element={<Main />} />
-            <Route
-              path="/search-results"
-              element={<div>Página de resultados (En construcción)</div>}
-            />
-          </Routes>
-        </main>
-      </div>
+      <Routes>
+        <Route path="/" element={<Main onOpenModal={handleOpenModal} />} />
+        <Route path="/search-results" element={<div>Resultados</div>} />
+      </Routes>
       <Footer />
+
+      <ModalWithForm
+        title="Búsqueda avanzada"
+        name="search"
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      >
+        <SearchForm />
+      </ModalWithForm>
     </div>
   );
 }
+
+export default App;

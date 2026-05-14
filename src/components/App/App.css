@@ -4,7 +4,7 @@
 
 .app__content {
   padding: 0 40px;
-  background-color: black;
+  background-color: #f2f0ef;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
