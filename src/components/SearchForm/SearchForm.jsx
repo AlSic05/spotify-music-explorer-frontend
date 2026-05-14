@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 
-function SearchForm() {
+function SearchForm({ onSearch }) {
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Buscando:", searchQuery);
+    if (onSearch) {
+      onSearch(searchQuery);
+    } else {
+      console.error("No se recibió la función onSearch en las props");
+    }
   };
 
   return (
