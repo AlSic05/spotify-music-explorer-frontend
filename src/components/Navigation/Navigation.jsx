@@ -1,18 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Navigation() {
   return (
     <nav className="navigation">
-      <Link to="/" className="navigation__link navigation__link--outline">
+      <NavLink to="/" className="navigation__link">
         Inicio
-      </Link>
-      <Link
-        to="/search-results"
-        className="navigation__link navigation__link--solid"
-      >
+      </NavLink>
+
+      <NavLink to="/search-results" className="navigation__link">
         Resultados
-      </Link>
+      </NavLink>
+
+      <NavLink to="/about" className="navigation__link">
+        Sobre el autor
+      </NavLink>
     </nav>
   );
 }

@@ -17,7 +17,7 @@ function SearchForm({ onSearch }) {
       <input
         type="text"
         className="search-form__input"
-        placeholder="¿Qué quieres escuchar?"
+        placeholder="¿Qué quieres buscar?"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         required

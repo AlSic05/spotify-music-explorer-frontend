@@ -1,5 +1,6 @@
+/* MusicCard.css */
 .music-card {
-  background-color: #1e1e1e; /* Un gris oscuro elegante */
+  background-color: #1e1e1e;
   border-radius: 12px;
   padding: 16px;
   width: 200px;
@@ -10,19 +11,22 @@
     transform 0.2s ease,
     background-color 0.2s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
 }
 
 .music-card:hover {
   background-color: #282828;
-  transform: translateY(-5px); /* Pequeño salto al pasar el mouse */
+  transform: translateY(-5px);
   cursor: pointer;
 }
 
 .music-card__image {
   width: 100%;
-  aspect-ratio: 1 / 1; /* Mantiene la imagen cuadrada */
-  border-radius: 8px;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
+  border-radius: 8px;
+  max-width: 100%;
+  height: auto;
 }
 
 .music-card__info {
@@ -37,7 +41,7 @@
   color: #ffffff;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis; /* Corta el texto si es muy largo */
+  text-overflow: ellipsis;
 }
 
 .music-card__artist {

@@ -6,12 +6,13 @@
 }
 
 .header__container {
-  max-width: 880px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
   padding: 20px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .header__title {
@@ -23,6 +24,20 @@
 
 @media screen and (max-width: 720px) {
   .header__container {
-    padding: 20px;
+    padding: 16px;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .header__title {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .header__title {
+    font-size: 18px;
   }
 }

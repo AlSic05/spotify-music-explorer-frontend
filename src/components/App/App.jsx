@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
+import About from "../About/About";
 import Main from "../Main/Main";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import SearchForm from "../SearchForm/SearchForm";
@@ -14,17 +15,43 @@ function App() {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [searchResults, setSearchResults] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [isNotFound, setIsNotFound] = React.useState(false);
+  const [hasError, setHasError] = React.useState(false);
+
+  React.useEffect(() => {
+    const savedSearch = localStorage.getItem("lastSearch");
+    if (savedSearch) {
+      setSearchResults(JSON.parse(savedSearch));
+    }
+  }, []);
 
   const handleSearchSubmit = (query) => {
     setIsLoading(true);
+    setIsNotFound(false);
+    setHasError(false);
+
+    navigate("/search-results");
+
     spotifyApi
       .search(query)
       .then((data) => {
-        setSearchResults(data.tracks.items);
+        const tracks = data.tracks?.items || [];
+
+        if (tracks.length === 0) {
+          setIsNotFound(true);
+          setSearchResults([]);
+          localStorage.removeItem("lastSearch");
+        } else {
+          setSearchResults(tracks);
+          localStorage.setItem("lastSearch", JSON.stringify(tracks));
+        }
         setIsModalOpen(false);
-        navigate("/search-results");
       })
-      .catch((err) => console.error(err))
+      .catch((err) => {
+        console.error(err);
+        setHasError(true);
+        setSearchResults([]);
+      })
       .finally(() => setIsLoading(false));
   };
 
@@ -39,13 +66,23 @@ function App() {
   return (
     <div className="app">
       <Header />
+
       <Routes>
         <Route path="/" element={<Main onOpenModal={handleOpenModal} />} />
+        <Route path="/about" element={<About />} />
         <Route
           path="/search-results"
-          element={<SearchResults results={searchResults} />}
+          element={
+            <SearchResults
+              results={searchResults}
+              isLoading={isLoading}
+              isNotFound={isNotFound}
+              hasError={hasError}
+            />
+          }
         />
       </Routes>
+
       <Footer />
 
       <ModalWithForm

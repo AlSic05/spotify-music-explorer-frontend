@@ -6,7 +6,9 @@ function Main({ onOpenModal }) {
     <main className="main">
       <section className="main__hero">
         <h2>Busca a tus artistas favoritos</h2>
-        <p>Encuentra álbumes y canciones usando la API de Spotify.</p>
+        <p>
+          Encuentra información de álbumes y canciones usando la API de Spotify.
+        </p>
         <button
           type="button"
           onClick={onOpenModal}
@@ -15,7 +17,6 @@ function Main({ onOpenModal }) {
           Comenzar búsqueda
         </button>
       </section>
-      <About />
     </main>
   );
 }

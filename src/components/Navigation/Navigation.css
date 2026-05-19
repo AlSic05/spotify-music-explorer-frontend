@@ -1,6 +1,6 @@
 .navigation {
   display: flex;
-  gap: 12px;
+  gap: 16px;
   align-items: center;
 }
 
@@ -15,26 +15,37 @@
   justify-content: center;
   transition: all 0.3s ease;
   cursor: pointer;
-}
 
-.navigation__link--outline {
   background-color: transparent;
   color: #1db954;
   border: 1px solid #1db954;
 }
 
-.navigation__link--solid {
-  background-color: #1db954;
-  color: #000;
-  border: 1px solid #1db954;
-}
-
-.navigation__link--outline:hover {
+.navigation__link:hover {
   background-color: rgba(29, 185, 84, 0.1);
   transform: translateY(-1px);
 }
 
-.navigation__link--solid:hover {
+.navigation__link.active {
+  background-color: #1db954;
+  color: #000000;
+  border: 1px solid #1db954;
+}
+
+.navigation__link.active:hover {
   background-color: #1ed760;
-  transform: translateY(-1px);
+  transform: none;
+}
+
+@media screen and (max-width: 480px) {
+  .navigation {
+    gap: 8px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .navigation__link {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
 }
