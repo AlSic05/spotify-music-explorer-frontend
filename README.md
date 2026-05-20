@@ -26,6 +26,10 @@
 
 ---
 
+## Enlace del proyecto en vivo
+
+[Ver la aplicación desplegada en GitHub Pages](https://alsic05.github.io/spotify-music-explorer-frontend/)
+
 ## ✒️ Autor
 
 - **Alejandra Sichaca**
