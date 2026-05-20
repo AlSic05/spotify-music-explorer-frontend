@@ -19,7 +19,7 @@ function App() {
   const [hasError, setHasError] = React.useState(false);
 
   React.useEffect(() => {
-    const savedSearch = localStorage.getItem("lastSearch");
+    const savedSearch = sessionStorage.getItem("lastSearch");
     if (savedSearch) {
       setSearchResults(JSON.parse(savedSearch));
     }
@@ -40,10 +40,10 @@ function App() {
         if (tracks.length === 0) {
           setIsNotFound(true);
           setSearchResults([]);
-          localStorage.removeItem("lastSearch");
+          sessionStorage.removeItem("lastSearch");
         } else {
           setSearchResults(tracks);
-          localStorage.setItem("lastSearch", JSON.stringify(tracks));
+          sessionStorage.setItem("lastSearch", JSON.stringify(tracks));
         }
         setIsModalOpen(false);
       })
@@ -67,21 +67,25 @@ function App() {
     <div className="app">
       <Header />
 
-      <Routes>
-        <Route path="/" element={<Main onOpenModal={handleOpenModal} />} />
-        <Route path="/about" element={<About />} />
-        <Route
-          path="/search-results"
-          element={
-            <SearchResults
-              results={searchResults}
-              isLoading={isLoading}
-              isNotFound={isNotFound}
-              hasError={hasError}
+      <div className="app__content">
+        <div className="app__section">
+          <Routes>
+            <Route path="/" element={<Main onOpenModal={handleOpenModal} />} />
+            <Route path="/about" element={<About />} />
+            <Route
+              path="/search-results"
+              element={
+                <SearchResults
+                  results={searchResults}
+                  isLoading={isLoading}
+                  isNotFound={isNotFound}
+                  hasError={hasError}
+                />
+              }
             />
-          }
-        />
-      </Routes>
+          </Routes>
+        </div>
+      </div>
 
       <Footer />
 
