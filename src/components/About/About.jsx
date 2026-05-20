@@ -1,6 +1,10 @@
+import React from "react";
+
 function About() {
   return (
     <section className="about">
+      <div className="about__image"></div>
+
       <div className="about__content">
         <h2 className="about__title">Acerca del autor</h2>
         <p className="about__description">
