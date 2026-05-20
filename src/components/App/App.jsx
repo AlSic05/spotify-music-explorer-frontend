@@ -6,7 +6,7 @@ import Main from "../Main/Main";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import SearchForm from "../SearchForm/SearchForm";
 import Footer from "../Footer/Footer";
-import spotifyApi from "../../utils/SpotifyApi";
+import spotifyApi from "../../utils/spotifyApi";
 import SearchResults from "../SearchResults/SearchResults";
 
 function App() {
