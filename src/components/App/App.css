@@ -1,9 +1,7 @@
 .app {
   background: #f2f0ef;
   width: 100%;
-
   min-height: 100vh;
-
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
@@ -15,7 +13,6 @@
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
-
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
