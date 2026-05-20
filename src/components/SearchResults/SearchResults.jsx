@@ -1,9 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import MusicCard from "../MusicCard/MusicCard";
 import Preloader from "../Preloader/Preloader";
 
 function SearchResults({ results, isLoading, isNotFound, hasError }) {
   const [visibleCount, setVisibleCount] = React.useState(3);
+  const navigate = useNavigate();
 
   const handleShowMore = () => {
     setVisibleCount((prevCount) => prevCount + 3);
@@ -32,13 +34,18 @@ function SearchResults({ results, isLoading, isNotFound, hasError }) {
 
     if (isNotFound) {
       return (
-        <div className="search-results__status-container">
+        <div className="search-results__status-container search-results__status-container--empty">
           <h3>No se ha encontrado nada</h3>
-          <p>Intenta buscar con otras palabras clave.</p>
+          <p>Intenta buscar con otras palabras clave o revisa la ortografía.</p>
+          <button
+            className="search-results__back-button"
+            onClick={() => navigate("/")}
+          >
+            Nueva búsqueda
+          </button>
         </div>
       );
     }
-
     const visibleSongs = results.slice(0, visibleCount);
 
     return (

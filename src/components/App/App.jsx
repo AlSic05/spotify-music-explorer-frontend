@@ -22,12 +22,12 @@ function App() {
     return savedSearch ? JSON.parse(savedSearch) : [];
   });
 
-  React.useEffect(() => {}, []);
-
   const handleSearchSubmit = (query) => {
     setIsLoading(true);
     setIsNotFound(false);
     setHasError(false);
+    sessionStorage.setItem("searchPerformed", "true");
+
     spotifyApi
       .search(query)
       .then((data) => {
@@ -37,12 +37,12 @@ function App() {
           setIsNotFound(true);
           setSearchResults([]);
           sessionStorage.removeItem("lastSearch");
-          navigate("/search-results");
         } else {
+          setIsNotFound(false);
           setSearchResults(tracks);
           sessionStorage.setItem("lastSearch", JSON.stringify(tracks));
-          navigate("/search-results");
         }
+        navigate("/search-results");
         setIsModalOpen(false);
       })
       .catch((err) => {
@@ -71,11 +71,11 @@ function App() {
           <Routes>
             <Route path="/" element={<Main onOpenModal={handleOpenModal} />} />
             <Route path="/about" element={<About />} />
+
             <Route
               path="/search-results"
               element={
-                sessionStorage.getItem("lastSearch") ||
-                searchResults.length > 0 ? (
+                sessionStorage.getItem("searchPerformed") === "true" ? (
                   <SearchResults
                     results={searchResults}
                     isLoading={isLoading}
