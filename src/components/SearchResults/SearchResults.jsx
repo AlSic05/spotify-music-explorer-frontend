@@ -8,56 +8,63 @@ function SearchResults({ results, isLoading, isNotFound, hasError }) {
   const handleShowMore = () => {
     setVisibleCount((prevCount) => prevCount + 3);
   };
-  if (isLoading) {
+
+  const renderContent = () => {
+    if (isLoading) {
+      return (
+        <div className="search-results__status-container">
+          <Preloader />
+        </div>
+      );
+    }
+
+    if (hasError) {
+      return (
+        <div className="search-results__status-container search-results__status-container--error">
+          <p>
+            Lo sentimos, algo ha salido mal durante la solicitud. Es posible que
+            haya un problema de conexión o que el servidor no funcione. Por
+            favor, inténtalo más tarde.
+          </p>
+        </div>
+      );
+    }
+
+    if (isNotFound) {
+      return (
+        <div className="search-results__status-container">
+          <h3>No se ha encontrado nada</h3>
+          <p>Intenta buscar con otras palabras clave.</p>
+        </div>
+      );
+    }
+
+    const visibleSongs = results.slice(0, visibleCount);
+
     return (
-      <div className="search-results__status-container">
-        <Preloader />
-      </div>
+      <>
+        <div className="search-results__grid">
+          {visibleSongs.map((song) => (
+            <MusicCard key={song.id} song={song} />
+          ))}
+        </div>
+
+        {visibleCount < results.length && (
+          <button
+            type="button"
+            onClick={handleShowMore}
+            className="search-results__more-button"
+          >
+            Mostrar más
+          </button>
+        )}
+      </>
     );
-  }
-
-  if (hasError) {
-    return (
-      <div className="search-results__status-container search-results__status-container--error">
-        <p>
-          Lo sentimos, algo ha salido mal durante la solicitud. Es posible que
-          haya un problema de conexión o que el servidor no funcione. Por favor,
-          inténtalo más tarde.
-        </p>
-      </div>
-    );
-  }
-
-  if (isNotFound) {
-    return (
-      <div className="search-results__status-container">
-        <h3>No se ha encontrado nada</h3>
-        <p>Intenta buscar con otras palabras clave.</p>
-      </div>
-    );
-  }
-
-  const visibleSongs = results.slice(0, visibleCount);
-
+  };
   return (
     <section className="search-results">
       <h2 className="search-results__title">Resultados de la búsqueda</h2>
-
-      <div className="search-results__grid">
-        {visibleSongs.map((song) => (
-          <MusicCard key={song.id} song={song} />
-        ))}
-      </div>
-
-      {visibleCount < results.length && (
-        <button
-          type="button"
-          onClick={handleShowMore}
-          className="search-results__more-button"
-        >
-          Mostrar más
-        </button>
-      )}
+      {renderContent()}
     </section>
   );
 }

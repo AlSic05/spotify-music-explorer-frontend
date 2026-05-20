@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import Header from "../Header/Header";
 import About from "../About/About";
 import Main from "../Main/Main";
@@ -13,25 +13,21 @@ function App() {
   const navigate = useNavigate();
 
   const [isModalOpen, setIsModalOpen] = React.useState(false);
-  const [searchResults, setSearchResults] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
   const [isNotFound, setIsNotFound] = React.useState(false);
   const [hasError, setHasError] = React.useState(false);
 
-  React.useEffect(() => {
+  const [searchResults, setSearchResults] = React.useState(() => {
     const savedSearch = sessionStorage.getItem("lastSearch");
-    if (savedSearch) {
-      setSearchResults(JSON.parse(savedSearch));
-    }
-  }, []);
+    return savedSearch ? JSON.parse(savedSearch) : [];
+  });
+
+  React.useEffect(() => {}, []);
 
   const handleSearchSubmit = (query) => {
     setIsLoading(true);
     setIsNotFound(false);
     setHasError(false);
-
-    navigate("/search-results");
-
     spotifyApi
       .search(query)
       .then((data) => {
@@ -41,9 +37,11 @@ function App() {
           setIsNotFound(true);
           setSearchResults([]);
           sessionStorage.removeItem("lastSearch");
+          navigate("/search-results");
         } else {
           setSearchResults(tracks);
           sessionStorage.setItem("lastSearch", JSON.stringify(tracks));
+          navigate("/search-results");
         }
         setIsModalOpen(false);
       })
@@ -51,6 +49,7 @@ function App() {
         console.error(err);
         setHasError(true);
         setSearchResults([]);
+        navigate("/search-results");
       })
       .finally(() => setIsLoading(false));
   };
@@ -75,12 +74,17 @@ function App() {
             <Route
               path="/search-results"
               element={
-                <SearchResults
-                  results={searchResults}
-                  isLoading={isLoading}
-                  isNotFound={isNotFound}
-                  hasError={hasError}
-                />
+                sessionStorage.getItem("lastSearch") ||
+                searchResults.length > 0 ? (
+                  <SearchResults
+                    results={searchResults}
+                    isLoading={isLoading}
+                    isNotFound={isNotFound}
+                    hasError={hasError}
+                  />
+                ) : (
+                  <Navigate to="/" replace />
+                )
               }
             />
           </Routes>
