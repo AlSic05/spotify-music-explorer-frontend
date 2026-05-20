@@ -1,16 +1,35 @@
-# React + Vite
+# Proyecto Spotify App - Tripleten
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+¡Hola! Este es el proyecto final de mi aplicación de Spotify. Es una app web interactiva hecha con **React** y **Vite** que se conecta en tiempo real con la API oficial de Spotify para buscar tus canciones y artistas favoritos.
 
-Currently, two official plugins are available:
+## 🛠️ Tecnologías Usadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Frontend
 
-## React Compiler
+- **React & Vite:** Para armar una estructura limpia, rápida y basada en componentes.
+- **React Router Dom:** Para manejar las páginas (`/`, `/about`, `/search-results`) y controlar quién puede entrar a ellas.
+- **API de Spotify:** Para conectar la app con el buscador real de música a través de peticiones asíncronas.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Diseño y Estilos
 
-## Expanding the ESLint configuration
+- **CSS3 (Metodología BEM):** Para que los estilos sean ordenados y fáciles de mantener.
+- **Diseño Responsivo:** Se adapta de forma fluida si lo miras desde la compu, una tablet o el celular.
+- **Detalles Visuales:** Tipografía _Inter_, botones con efectos modernos e ilustraciones cargadas directamente desde el CSS para que todo se vea premium.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🔥 Funcionalidades Clave
+
+- **Búsqueda en Modal:** Un botón genial que abre un modal con el formulario para buscar música.
+- **Pantallas de Estado:** Si está cargando verás un _Preloader_, y si algo falla o no encuentra nada, te saldrá un mensaje claro con una ilustración de unDraw.
+- **Rutas Protegidas:** Blindamos la página de `/search-results`. Si alguien intenta escribir la URL a mano sin haber buscado nada antes, la app lo regresa automáticamente al Inicio.
+- **Memoria Inteligente (`sessionStorage`):** Si estás viendo las canciones y recargas la página, ¡los resultados no se borran! El estado se recarga al instante y no te expulsa de la pantalla.
+- **Botón de Nueva Búsqueda:** Cuando no hay resultados, tienes un botón a la mano que te regresa al Inicio para limpiar todo y volver a intentar.
+
+---
+
+## Enlace del proyecto en vivo
+
+[Ver la aplicación desplegada en GitHub Pages](https://alsic05.github.io/spotify-music-explorer-frontend/)
+
+## ✒️ Autor
+
+- **Alejandra Sichaca**
